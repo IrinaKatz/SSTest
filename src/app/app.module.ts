@@ -9,7 +9,8 @@ import {FormsModule} from '@angular/forms';
 import {RoutingModule} from './modules/routing/routing.module';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import {RouterModule} from '@angular/router';
-import { IconsModule } from 'angular-bootstrap-md';
+
+
 
 @NgModule({
   declarations: [
@@ -23,8 +24,7 @@ import { IconsModule } from 'angular-bootstrap-md';
     NgbModule,
     FormsModule,
     RoutingModule,
-    RouterModule,
-    IconsModule
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
