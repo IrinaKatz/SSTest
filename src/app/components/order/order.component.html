@@ -1,0 +1,67 @@
+<div class="account-container">
+
+  <div class="header-box">
+    <div class="photo-container">
+      <img [src]="order.imagePath">
+    </div>
+    <div class="name">{{order.header}}</div>
+    <div class="type">{{order.type}} {{order.socialMedia}}</div>
+  </div>
+
+  <div class="content-box" *ngFor="let elem of order.options">
+    <div class="icon-container" [ngSwitch]="elem.option">
+      <img *ngSwitchCase="'Лайки'" src="../../../assets/icons/Лайки.png" alt="like">
+      <img *ngSwitchCase="'Репосты'" src="../../../assets/icons/Репосты.png" alt="like">
+      <img *ngSwitchCase="'Подписчики'" src="../../../assets/icons/Подписчики.png" alt="like">
+    </div>
+    <div class="content-name">{{elem.option}}</div>
+    <div class="content-progress">{{elem.currentAmount}}/{{elem.totalAmount}}</div>
+    <div class="options center" >
+
+      <ng-template #popContent>
+
+        <div class="pop-el" *ngIf="elem.stopped" (click)="elem.stopped = !elem.stopped">
+            <span class="pop-icon">
+              <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.72512 5.52288L0.832933 9.91743C0.568713 10.0859 0.229575 9.98835 0.0754473 9.69955C0.026036 9.60696 0 9.50169 0 9.3945V0.605397C0 0.271045 0.247971 0 0.553859 0C0.651923 0 0.748228 0.0284587 0.832933 0.0824678L7.72512 4.47702C7.98934 4.64549 8.07859 5.01619 7.92446 5.30499C7.87632 5.3952 7.80765 5.47026 7.72512 5.52288Z" fill="#BBDBF0"/>
+              </svg>
+            </span>
+          <span class="pop-name">Возобновить</span>
+        </div>
+
+        <div class="pop-el" *ngIf="!elem.stopped" (click)="elem.stopped = !elem.stopped">
+            <span class="pop-icon">
+              <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="3" height="10" rx="1.5" fill="#439DD5" fill-opacity="0.3598"/>
+                <rect x="5" width="3" height="10" rx="1.5" fill="#439DD5" fill-opacity="0.3598"/>
+              </svg>
+            </span>
+          <span class="pop-name">Остановить</span>
+        </div>
+
+        <div class="pop-el ">
+            <span class="pop-icon">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53082 0.469182C8.90524 -0.156394 7.89099 -0.156394 7.26541 0.469182L5 2.73459L2.73459 0.469182C2.10902 -0.156394 1.09476 -0.156394 0.469182 0.469182C-0.156394 1.09476 -0.156394 2.10902 0.469182 2.73459L2.73459 5L0.469183 7.26541C-0.156393 7.89098 -0.156393 8.90524 0.469182 9.53082C1.09476 10.1564 2.10902 10.1564 2.73459 9.53082L5 7.26541L7.26541 9.53082C7.89098 10.1564 8.90524 10.1564 9.53082 9.53082C10.1564 8.90524 10.1564 7.89098 9.53082 7.26541L7.26541 5L9.53082 2.73459C10.1564 2.10902 10.1564 1.09476 9.53082 0.469182Z" fill="#E2E2E2"/>
+          </svg>
+            </span>
+          <span class="pop-delete">Удалить</span>
+        </div>
+
+      </ng-template>
+      <a class="pop-button center" [ngbPopover]="popContent" triggers="mouseenter" placement="bottom">
+        <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M30 15.5C30 23.5085 23.5085 30 15.5 30C7.49147 30 1 23.5085 1 15.5C1 7.49147 7.49147 1 15.5 1C23.5085 1 30 7.49147 30 15.5Z" stroke="#B4B4B4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 17C12.3284 17 13 16.3284 13 15.5C13 14.6716 12.3284 14 11.5 14C10.6716 14 10 14.6716 10 15.5C10 16.3284 10.6716 17 11.5 17Z" fill="#B4B4B4"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5 17C16.3284 17 17 16.3284 17 15.5C17 14.6716 16.3284 14 15.5 14C14.6716 14 14 14.6716 14 15.5C14 16.3284 14.6716 17 15.5 17Z" fill="#B4B4B4"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M19.5 17C20.3284 17 21 16.3284 21 15.5C21 14.6716 20.3284 14 19.5 14C18.6716 14 18 14.6716 18 15.5C18 16.3284 18.6716 17 19.5 17Z" fill="#B4B4B4"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="progress" style="height: 2px;">
+      <div class="progress-bar" role="progressbar" [style.width.%] = "elem.currentAmount/elem.totalAmount*100" style="background-color: #FF6A6A" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>
+

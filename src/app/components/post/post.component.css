@@ -1,0 +1,89 @@
+@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css?integrity=sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/&crossorigin=anonymous');
+
+.container {
+  position: absolute;
+  background-color: #999999;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order-box {
+  background-color: white;
+  border-radius: 5px;
+  width: 620px;
+  height: 610px;
+  overflow: hidden;
+}
+.header-box {
+  background-color: #F2F2F2;
+  width: 100%;
+  height: 90px;
+}
+.header {
+  font-size: 30px;
+  font-weight: bold;
+  color: #464646;
+  text-align: center;
+  line-height: 90px;
+}
+.close {
+  position: relative;
+  top: -90px;
+  right: 10px;
+  z-index: 3;
+}
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 119px;
+  padding: 20px;
+  font-size: 16px;
+}
+.input-box>input {
+  margin-top: 16px;
+  width: 580px;
+  height: 50px;
+  border: 1px solid #ECECEC;
+  border-radius: 5px;
+}
+.promo-element {
+  /*display: grid;*/
+  /*grid-template-columns: 50px 120px auto;*/
+  padding: 20px;
+  border-bottom: 0.6px solid #DCDCDC;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.promo-type {
+  padding: 10px;
+  padding-left: 20px;
+  line-height: 30px;
+  width: 130px;
+}
+.promo-sum {
+  width: 390px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #DCDCDC;
+  padding: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.promo-sum>input {
+  width: 290px;
+  /*height: 48px;*/
+  border: none;
+  line-height: 28px;
+  color: #464646;
+}
+textarea:focus, input:focus{
+  outline: none;
+}
+.sum {
+  color: #999999;
+}

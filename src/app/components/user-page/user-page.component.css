@@ -1,0 +1,28 @@
+.container {
+  background-color: #F2F2F2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+.button-container {
+  width: 80%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+.order-button {
+  margin: 20px;
+  background-color: #FF6A6A;
+  color: white;
+  font-weight: bold;
+  width: 215px;
+  height: 40px;
+  border-radius: 30px;
+  border: transparent;
+}
+.order-container {
+  margin-bottom: 20px;
+}

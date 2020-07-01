@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="order-box">
+
+    <div class="header-box">
+      <div class="header">Оформление заказа</div>
+      <div class="close" (click)="onClose()">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9706 0.656854C12.2109 0.897178 12.2109 1.28682 11.9706 1.52714L7.18401 6.31371L11.9706 11.1003C12.2109 11.3406 12.2109 11.7302 11.9706 11.9706C11.7303 12.2109 11.3406 12.2109 11.1003 11.9706L6.31372 7.18399L1.52715 11.9706C1.28683 12.2109 0.89719 12.2109 0.656867 11.9706C0.416544 11.7302 0.416545 11.3406 0.656867 11.1003L5.44344 6.31371L0.656866 1.52714C0.416544 1.28682 0.416544 0.897177 0.656867 0.656854C0.897189 0.416531 1.28683 0.416532 1.52715 0.656854L6.31372 5.44342L11.1003 0.656855C11.3406 0.416532 11.7303 0.416532 11.9706 0.656854Z" fill="#D8D8D8"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <div class="input-header">Укажите ссылку на то, что хотите раскрутить</div>
+      <input type="text" [(ngModel)]="url" (change)="onUrlEnter()">
+    </div>
+    <div class="details-container" >
+      <div class="promo-element" *ngFor="let option of options | async">
+        <div class="icon">
+          <img [src]="'../../../assets/icons/'+ option.option +'.png'">
+        </div>
+        <div class="promo-type">{{option.option}}</div>
+        <div class="promo-sum">
+          <input [(ngModel)]="option.totalAmount">
+          <span class="sum">
+<!--            <span class="glyphicon glyphicon-rub" aria-hidden="true"></span> -->
+{{option.totalAmount*(priceList.VK[option.option]) | number }}</span>
+<mdb-icon fas icon="ruble-sign"></mdb-icon>
+        </div>
+
+      </div>
+    </div>
+    <div class="sum-container"></div>
+    <div class="button-container"></div>
+  </div>
+</div>
