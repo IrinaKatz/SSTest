@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Order} from '../../models/order';
 import {OrderService} from '../../services/order.service';
 
@@ -7,16 +7,21 @@ import {OrderService} from '../../services/order.service';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent  {
 
-  active = true;
   @Input() order: Order;
-  constructor() { }
+  @Output() remove = new EventEmitter();
+  constructor(private service: OrderService) { }
 
-  ngOnInit() {
-    console.log(this.order);
+  onDelete(i) {
+    this.order.options.splice(i, 1);
+    if (this.order.options.length !== 0) {
+      console.log(this.order.options);
+      this.service.updateOrder(this.order);
+    } else {
+      this.service.removeOrder(this.order);
+      this.remove.emit(this.order);
+    }
+
   }
-
-
-
 }

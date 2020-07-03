@@ -1,8 +1,8 @@
-<div class="container container-fluid">
+<div class="cont">
   <div class="button-container">
-    <button class="order-button" (click)="onNewOrder()">ДОБАВИТЬ ЗАКАЗ</button>
+    <button class="order-button red-button" (click)="onNewOrder()">ДОБАВИТЬ ЗАКАЗ</button>
   </div>
   <div class="order-container" *ngFor="let order of orders">
-    <app-order [order]="order"></app-order>
+    <app-order [order]="order" (remove)="onOrderRemove(order)"></app-order>
   </div>
 </div>

@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: Rubik;
+}
+button {
+  color: white;
+  font-weight: bold;
+}
+.red-button {
+  background-color: #FF6A6A;
+}
+.red-button:hover {
+  background-color: #FF4343;
+}
+.red-button:active {
+  background-color: #C53333;
+}
+.grey-button {
+  background-color: #BBBBBB;
+}
+.grey-button:hover {
+  background-color: #9C9C9C;
+}
+.grey-button:active {
+  background-color: #6F6F6F;
+}

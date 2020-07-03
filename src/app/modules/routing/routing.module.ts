@@ -5,7 +5,7 @@ import {UserPageComponent} from '../../components/user-page/user-page.component'
 import {PostComponent} from '../../components/post/post.component';
 
 const routes: Routes = [
-  {path: '', component: UserPageComponent},
+  {path: '', component: UserPageComponent, runGuardsAndResolvers: 'always'},
   {path: 'new', component: PostComponent},
   {path: '**', redirectTo: ''}
 ]
@@ -15,7 +15,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
   ]
 })
 export class RoutingModule { }

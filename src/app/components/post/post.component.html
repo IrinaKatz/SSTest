@@ -1,35 +1,76 @@
-<div class="container">
+<div class="container1">
   <div class="order-box">
 
     <div class="header-box">
-      <div class="header">Оформление заказа</div>
       <div class="close" (click)="onClose()">
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9706 0.656854C12.2109 0.897178 12.2109 1.28682 11.9706 1.52714L7.18401 6.31371L11.9706 11.1003C12.2109 11.3406 12.2109 11.7302 11.9706 11.9706C11.7303 12.2109 11.3406 12.2109 11.1003 11.9706L6.31372 7.18399L1.52715 11.9706C1.28683 12.2109 0.89719 12.2109 0.656867 11.9706C0.416544 11.7302 0.416545 11.3406 0.656867 11.1003L5.44344 6.31371L0.656866 1.52714C0.416544 1.28682 0.416544 0.897177 0.656867 0.656854C0.897189 0.416531 1.28683 0.416532 1.52715 0.656854L6.31372 5.44342L11.1003 0.656855C11.3406 0.416532 11.7303 0.416532 11.9706 0.656854Z" fill="#D8D8D8"/>
         </svg>
       </div>
+      <div class="header">Оформление заказа</div>
     </div>
 
-    <div class="input-box">
-      <div class="input-header">Укажите ссылку на то, что хотите раскрутить</div>
-      <input type="text" [(ngModel)]="url" (change)="onUrlEnter()">
-    </div>
-    <div class="details-container" >
-      <div class="promo-element" *ngFor="let option of options | async">
-        <div class="icon">
-          <img [src]="'../../../assets/icons/'+ option.option +'.png'">
+    <div class="order-content">
+      <div class="form-group input-box" [formGroup]="urlForm" [ngClass]="show ? 'border-add' : ''">
+        <div class="input-header">Укажите ссылку на то, что хотите раскрутить</div>
+        <div class="input-field" [ngClass]="errorMessage ? 'red' : ''">
+          <img [src]=iconPath>
+          <input type="form-control text" [formControlName]="'urlControl'" (keyup.enter)="onUrlEnter()" (change)="onUrlEnter()" placeholder="Введите ссылку">
         </div>
-        <div class="promo-type">{{option.option}}</div>
-        <div class="promo-sum">
-          <input [(ngModel)]="option.totalAmount">
-          <span class="sum">
-<!--            <span class="glyphicon glyphicon-rub" aria-hidden="true"></span> -->
-{{option.totalAmount*(priceList.VK[option.option]) | number }}</span>
+        <div class="error-message">{{errorMessage}}</div>
+      </div>
+
+      <div class="details-container">
+
+        <div class="promo-element" *ngFor="let option of order.options">
+          <div class="promo-leftpart">
+            <div class="icon">
+              <img [src]="'../../../assets/icons/'+ option.option +'.png'">
+            </div>
+            <div class="promo-type">{{option.option}}</div>
+          </div>
+
+          <div class="promo-sum">
+            <input [(ngModel)]="option.totalAmount" (input)="toEditSum()">
+            <span class="display-sum">
+               <span class="sum">
+                  {{option.totalAmount*priceList[order.socialMedia][option.option] | myDecimal }}
+                </span>
+                <i class="fas fa-ruble-sign" style="color:#999999; font-size: 14px"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="acceleration" *ngIf="show">
+          <div class="icon">
+            <img [src]="'../../../assets/icons/fast.png'">
+          </div>
+          <div class="fast-header">Увеличенная скорость накрутки в 2 раза</div>
+          <span class="fast-header2">Цена: х1,5 </span>
+          <span class="check" *ngIf="order.acceleration" (click)="toAccelerate()">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="22" height="22" rx="5" stroke="#FF6A6A" stroke-width="2"/>
+                <path d="M18.73 8L10.242 16.487L6 12.245" stroke="#FF6A6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+          </span>
+          <span class="check" *ngIf="!order.acceleration" (click)="toAccelerate()">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="22" height="22" rx="5" stroke="#FF6A6A" stroke-width="2"/>
+              </svg>
+          </span>
         </div>
 
       </div>
     </div>
-    <div class="sum-container"></div>
-    <div class="button-container"></div>
+
+
+    <div class="sum-container">
+      <span class="total">Итого: </span>
+      <span class="total-sum">{{order.sum | myDecimal}} руб.</span>
+    </div>
+    <div class="button-container">
+      <button class="grey-button" (click)="onClose()">ЗАКРЫТЬ</button>
+      <button (click)="onNewOrder()" [disabled]="!order.sum" [ngClass]="order.sum ? 'red-button' : 'pink-button'">ДОБАВИТЬ</button>
+    </div>
   </div>
 </div>
