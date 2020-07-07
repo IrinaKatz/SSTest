@@ -2,26 +2,26 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.18.
 
-## Development server
+Testing task for the position of Frontend Developer
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Testing task represents development of a small web application for managing orders.
+It's a single page application with one page representing all the orders and a dialog window for
+making a new order. 
 
-## Code scaffolding
+Every order consists of different amount of modules (likes, reposts, subscribers)
+that depend on the type of an order (user's account or post). Every module can be removed 
+or stopped/activated. After removing the last module the order is also to be removed.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+New order creation consists of the following steps:
+1. User types the link to the social media resource (an account or a post)
+2. The link is validated on the front side, the order type is specified
+3. Depending on the type of the order all the available modules are represented
+4. The user specifies data in the modules by his values
+5. After the button "Add" is clicked the order is added to the orders list
 
-## Build
+The page is simply adaptive (only desktop and mobile versions).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+All the functionaly must be developed according to designed layout using 
+Angular 6+ and Bootstrap 4+. Any public modules for Angular could be used.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Serverside interaction is not needed. For server-like interaction the local storage should be used.
