@@ -1,34 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { PostComponent } from './components/post/post.component';
-import { OrderComponent } from './components/order/order.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NewOrderComponent } from './user-orders/main-page/new-order/new-order.component';
+import { OrderItemComponent } from './user-orders/main-page/order-item/order-item.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {RoutingModule} from './modules/routing/routing.module';
-import { UserPageComponent } from './components/user-page/user-page.component';
-import {RouterModule} from '@angular/router';
-import { MyDecimalPipe } from './components/post/my-decimal.pipe';
-
-
+import { MainPageComponent } from './user-orders/main-page/main-page.component';
+import { MyDecimalPipe } from './user-orders/main-page/new-order/my-decimal.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent,
-    OrderComponent,
-    UserPageComponent,
+    NewOrderComponent,
+    OrderItemComponent,
+    MainPageComponent,
     MyDecimalPipe
   ],
   imports: [
     BrowserModule,
-    NgbModule,
     FormsModule,
-    RoutingModule,
-    RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
+  entryComponents: [NewOrderComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

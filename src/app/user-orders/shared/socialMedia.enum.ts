@@ -1,4 +1,4 @@
-export enum SocialMedia {
+export enum SocialMediaEnum {
   VK= 'Вконтакте',
   INSTAGRAM = 'Инстаграм',
   TWITTER = 'Твиттер'

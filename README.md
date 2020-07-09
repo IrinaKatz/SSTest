@@ -13,7 +13,7 @@ that depend on the type of an order (user's account or post). Every module can b
 or stopped/activated. After removing the last module the order is also to be removed.
 
 New order creation consists of the following steps:
-1. User types the link to the social media resource (an account or a post)
+1. UserInterface types the link to the social media resource (an account or a post)
 2. The link is validated on the front side, the order type is specified
 3. Depending on the type of the order all the available modules are represented
 4. The user specifies data in the modules by his values

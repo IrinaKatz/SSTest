@@ -1,17 +1,19 @@
-import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {Order} from '../models/order';
-import {OrderType} from '../models/orderType';
-import {OrderParam} from '../models/orderParam';
-import {SocialMedia} from '../models/socialMedia';
-import {OrderOption} from '../models/orderOption';
+import {ElementRef, Injectable, ViewChild} from '@angular/core';
+import {BehaviorSubject, Observable, of} from 'rxjs';
+import {OrderModel} from './order.model';
+import {OrderTypeEnum} from './orderType.enum';
+import {OrderParamModel} from './orderParam.model';
+import {OrderOptionEnum} from './orderOption.enum';
+import {SocialMediaEnum} from './socialMedia.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+
+  orderAdded = new BehaviorSubject(false);
   private newOrderId = 0;
-  private orders: Order[] = this.defaultOrders();
+  private orders: OrderModel[] = this.defaultOrders();
   private priceList = {
     Вконтакте: {
       Лайки: 2,
@@ -39,11 +41,11 @@ export class OrderService {
 
   getDefaultOrder() {
     this.newOrderId++;
-    return new Order(this.newOrderId, 1, '', '../../../assets/icons/photo.png', 'Василий Иванович',
+    return new OrderModel(this.newOrderId, 1, '', '../../../assets/icons/photo.png', 'Василий Иванович',
       undefined, [], undefined, false, 0);
   }
 
-  defaultOrders(): Order[] {
+  defaultOrders(): OrderModel[] {
     const defaultOrders = [
       {
         id: 1,
@@ -51,9 +53,9 @@ export class OrderService {
         url: 'brgbrt',
         imagePath: '../../../assets/icons/photo.png',
         header: 'Дмитрий Головаев',
-        type: OrderType.ACCOUNT,
-        options: [new OrderParam(OrderOption.SUBSCRIBER, 20000, 0, false)],
-        socialMedia: SocialMedia.INSTAGRAM,
+        type: OrderTypeEnum.ACCOUNT,
+        options: [new OrderParamModel(OrderOptionEnum.SUBSCRIBER, 20000, 0, false)],
+        socialMedia: SocialMediaEnum.INSTAGRAM,
         acceleration: false,
         sum: 0
       },
@@ -63,10 +65,10 @@ export class OrderService {
         url: 'brgbrt',
         imagePath: '../../../assets/icons/postImg.png',
         header: 'Андрей Иванович',
-        type: OrderType.POST,
-        options: [new OrderParam(OrderOption.LIKE, 20000, 10000, true),
-          new OrderParam(OrderOption.REPOST, 15000, 10000, false)],
-        socialMedia: SocialMedia.INSTAGRAM,
+        type: OrderTypeEnum.POST,
+        options: [new OrderParamModel(OrderOptionEnum.LIKE, 20000, 10000, true),
+          new OrderParamModel(OrderOptionEnum.REPOST, 15000, 10000, false)],
+        socialMedia: SocialMediaEnum.INSTAGRAM,
         acceleration: false,
         sum: 0
       },
@@ -75,13 +77,14 @@ export class OrderService {
     return JSON.parse(window.localStorage.getItem('orders'));
   }
 
-  getOrders(userId: number): Observable<Order[]> {
+  getOrders(userId: number): Observable<OrderModel[]> {
     return of(JSON.parse(window.localStorage.getItem('orders')));
   }
 
-  addOrder(order: Order): void {
+  addOrder(order: OrderModel): void {
     this.orders.push(order);
     window.localStorage.setItem('orders', JSON.stringify(this.orders));
+    this.orderAdded.next(true);
   }
 
   setOption(url, media, order) {
@@ -93,7 +96,7 @@ export class OrderService {
         if (i >= (urlParts.length - 1)) {
           return false;
         }
-        // second check - if it is a post in social media
+        // second check - if it is a new-order in social media
         if (urlParts[i + 1].includes('?w=')
           || (urlParts[i + 1] === 'p' && urlParts.length >= (i + 2))
           || (urlParts[i + 2] === 'status' && urlParts.length >= (i + 3))) {
@@ -113,22 +116,22 @@ export class OrderService {
 
   setPostOptions(media, order) {
     order = this.cleanOrder(order);
-    order.type = OrderType.POST;
+    order.type = OrderTypeEnum.POST;
     if (media === 'twitter') {
       order.options.push({
-        option: OrderOption.LIKE,
+        option: OrderOptionEnum.LIKE,
         totalAmount: 0,
         currentAmount: 0,
         stopped: false
       });
     } else {
       order.options.push({
-        option: OrderOption.LIKE,
+        option: OrderOptionEnum.LIKE,
         totalAmount: 0,
         currentAmount: 0,
         stopped: false
       }, {
-        option: OrderOption.REPOST,
+        option: OrderOptionEnum.REPOST,
         totalAmount: 0,
         currentAmount: 0,
         stopped: false
@@ -139,9 +142,9 @@ export class OrderService {
 
   setAccountOptions(order) {
     order = this.cleanOrder(order);
-    order.type = OrderType.ACCOUNT;
+    order.type = OrderTypeEnum.ACCOUNT;
     order.options.push({
-      option: OrderOption.SUBSCRIBER,
+      option: OrderOptionEnum.SUBSCRIBER,
       totalAmount: 0,
       currentAmount: 0,
       stopped: false
@@ -156,7 +159,7 @@ export class OrderService {
     return order;
   }
 
-  updateOrder(modifiedOrder: Order) {
+  updateOrder(modifiedOrder: OrderModel) {
     this.orders.forEach(order => {
       if (order.id === modifiedOrder.id) {
         order = modifiedOrder;
@@ -165,7 +168,7 @@ export class OrderService {
     window.localStorage.setItem('orders', JSON.stringify(this.orders));
   }
 
-  removeOrder(orderToRemove: Order) {
+  removeOrder(orderToRemove: OrderModel) {
     this.orders.forEach(order => {
       let orderIndex = 0;
       if (order.id === orderToRemove.id) {
@@ -175,4 +178,6 @@ export class OrderService {
     });
     window.localStorage.setItem('orders', JSON.stringify(this.orders));
   }
+
+
 }

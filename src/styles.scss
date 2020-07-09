@@ -1,12 +1,18 @@
+$red: #FF6A6A;
+
 body {
   font-family: Rubik;
 }
 button {
   color: white;
   font-weight: bold;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
 }
 .red-button {
-  background-color: #FF6A6A;
+  background-color: $red;
 }
 .red-button:hover {
   background-color: #FF4343;

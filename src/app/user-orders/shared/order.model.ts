@@ -1,17 +1,17 @@
-import {OrderType} from './orderType';
-import {SocialMedia} from './socialMedia';
-import {OrderParam} from './orderParam';
+import {OrderTypeEnum} from './orderType.enum';
+import {SocialMediaEnum} from './socialMedia.enum';
+import {OrderParamModel} from './orderParam.model';
 
-export class Order {
+export class OrderModel {
 
   id: number;
   userId: number;
   url: string;
   imagePath: string;
   header: string;
-  type: OrderType;
-  options: OrderParam[];
-  socialMedia: SocialMedia | string;
+  type: OrderTypeEnum;
+  options: OrderParamModel[];
+  socialMedia: SocialMediaEnum | string;
   acceleration: boolean;
   sum: number;
   constructor(id: number,
@@ -19,9 +19,9 @@ export class Order {
               url: string,
               imagePath: string,
               header: string,
-              type: OrderType,
-              options: OrderParam[],
-              socialMedia: SocialMedia | string,
+              type: OrderTypeEnum,
+              options: OrderParamModel[],
+              socialMedia: SocialMediaEnum | string,
               acceleration: boolean,
               sum: number) {
     this.id = id;

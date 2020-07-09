@@ -1,26 +1,26 @@
-<div class="container1">
+<div class="container1 d-flex flex-column my-2">
 
-  <div class="header-box">
-    <div class="photo-container">
+  <div class="row p-3 bg-white" style="border-bottom: 1px solid #F2F2F2">
+    <div class="photo-container mx-4">
       <img [src]="order.imagePath">
     </div>
-    <div class="name">{{order.header}}</div>
-    <div class="type">{{order.type}} {{order.socialMedia}}</div>
+    <div class="d-flex flex-column ml-3">
+      <div class="name">{{order.header}}</div>
+      <div class="type">{{order.type}} {{order.socialMedia}}</div>
+    </div>
   </div>
 
   <div class="content-box" *ngFor="let elem of order.options, let i = index">
     <div class="icon-container" [ngSwitch]="elem.option">
-      <img *ngSwitchCase="'Лайки'" src="../../../assets/icons/Лайки.png" alt="like">
-      <img *ngSwitchCase="'Репосты'" src="../../../assets/icons/Репосты.png" alt="like">
-      <img *ngSwitchCase="'Подписчики'" src="../../../assets/icons/Подписчики.png" alt="like">
+      <img *ngSwitchCase="'Лайки'" src="../../../../assets/icons/Лайки.png" alt="like">
+      <img *ngSwitchCase="'Репосты'" src="../../../../assets/icons/Репосты.png" alt="like">
+      <img *ngSwitchCase="'Подписчики'" src="../../../../assets/icons/Подписчики.png" alt="like">
     </div>
     <div class="content-name">{{elem.option}}</div>
-    <div class="content-progress">
-      <span class="progress-amount" [ngClass]="elem.stopped ? 'hide' : ''">
+    <span class="progress-amount">
         {{elem.currentAmount}}/{{elem.totalAmount}}
-      </span>
-      <span class="stopped" *ngIf="elem.stopped">Приостановлено</span>
-    </div>
+    </span>
+    <span class="stopped" *ngIf="elem.stopped">Приостановлено</span>
     <div class="options center" >
 
       <ng-template #popContent>
@@ -44,7 +44,7 @@
           <span class="pop-name">Остановить</span>
         </div>
 
-        <div class="pop-el ">
+        <div class="pop-el">
             <span class="pop-icon">
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M9.53082 0.469182C8.90524 -0.156394 7.89099 -0.156394 7.26541 0.469182L5 2.73459L2.73459 0.469182C2.10902 -0.156394 1.09476 -0.156394 0.469182 0.469182C-0.156394 1.09476 -0.156394 2.10902 0.469182 2.73459L2.73459 5L0.469183 7.26541C-0.156393 7.89098 -0.156393 8.90524 0.469182 9.53082C1.09476 10.1564 2.10902 10.1564 2.73459 9.53082L5 7.26541L7.26541 9.53082C7.89098 10.1564 8.90524 10.1564 9.53082 9.53082C10.1564 8.90524 10.1564 7.89098 9.53082 7.26541L7.26541 5L9.53082 2.73459C10.1564 2.10902 10.1564 1.09476 9.53082 0.469182Z" fill="#E2E2E2"/>
@@ -70,4 +70,3 @@
     </div>
   </div>
 </div>
-

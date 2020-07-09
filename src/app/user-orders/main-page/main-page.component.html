@@ -1,0 +1,8 @@
+<div class="container-fluid d-flex flex-column align-items-center">
+  <div class="button-container row justify-content-end mb-3">
+    <button class="order-button red-button" (click)="open()">ДОБАВИТЬ ЗАКАЗ</button>
+  </div>
+  <div class="order-container mb-3" *ngFor="let order of orders">
+    <app-order-item [order]="order" ></app-order-item>
+  </div>
+</div>

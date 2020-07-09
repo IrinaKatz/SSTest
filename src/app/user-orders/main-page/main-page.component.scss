@@ -1,0 +1,47 @@
+$boxwidth: 700px;
+$bggrey: #F2F2F2;
+
+.container-fluid {
+  background-color: $bggrey;
+  min-height: 100vh;
+}
+.button-container {
+  width: $boxwidth;
+}
+.order-button {
+  margin: 20px 0 10px 0;
+  width: 215px;
+  height: 40px;
+  border-radius: 30px;
+  border: transparent;
+}
+.order-container {
+  width: $boxwidth;
+}
+.modal-content {
+  border-radius: 12px!important;
+  overflow: hidden;
+}
+@media only screen and (max-width: 576px){
+  .button-container {
+    width: 100%;
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center!important;
+    margin-bottom: 10px!important;
+  }
+  .order-button {
+    width: 100%;
+  }
+  .order-container {
+    width: 100%;
+    margin: 0;
+  }
+  .container-fluid {
+    padding: 0;
+  }
+  .order-container {
+    margin-bottom: 10px!important;
+  }
+}

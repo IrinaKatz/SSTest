@@ -1,32 +1,28 @@
+$darkgreyfont: #464646;
+$bluefont: #439DD5;
+$lightgreyfont: #999999;
+$fontlarge: 20px;
+$fontsmall: 14px;
+$bggrey: #F2F2F2;
+
+
 .container1 {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-gap: 1px;
-  width: 700px;
-  margin: 10px 0;
   border-radius: 10px;
   overflow: hidden;
 }
-.header-box {
-  background-color: white;
-  display: grid;
-  grid-template-columns: 90px auto;
-  grid-template-rows: auto auto;
-  padding: 20px;
-}
-.content-box {
-  background-color: white;
-  display: grid;
-  grid-template-columns: 90px auto 51px;
-  grid-template-rows: auto auto 15px;
-  padding: 20px;
-}
 .photo-container {
-  grid-area: 1/1/3/2;
   width: 50px;
   height: 50px;
   border-radius: 7px;
   overflow: hidden;
+}
+.content-box {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 90px auto 140px 51px;
+  grid-template-rows: auto auto 15px;
+  padding: 20px;
+  border-bottom: 1px solid $bggrey;
 }
 .icon-container {
   grid-area: 1/1/4/2;
@@ -34,53 +30,47 @@
   height: 50px;
 }
 .name {
-  grid-area: 1/2/2/3;
-  font-size: 20px;
-  color: #464646;
+  font-size: $fontlarge;
+  color: $darkgreyfont;
 }
 .type {
-  grid-area: 2/2/3/3;
-  font-size: 14px;
-  color: #439DD5;
+  font-size: $fontsmall;
+  color: $bluefont;
 }
 .content-name {
-  grid-area: 1/2/2/3;
-  font-size: 16px;
+  grid-area: 1/2/2/4;
   color: #999999;
 }
-.content-progress {
-  grid-area: 2/2/3/3;
-  font-size: 16px;
-  color: #464646;
-}
 .options {
-  grid-area: 1/3/4/4;
+  grid-area: 1/4/4/5;
   padding-left: 18px;
 }
+.progress-amount {
+  grid-area: 2/2/3/3;
+}
+.stopped {
+  grid-area: 2/3/3/4;
+}
 .progress {
-  grid-area: 3/2/4/3;
+  grid-area: 3/2/4/4;
   position: relative;
   top: 14px;
 }
 .content-progress {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  color: #464646;
+  color: $darkgreyfont;
 }
 .stopped {
   color: #EFA934;
 }
 .pop-name {
   margin-left: 10px;
-  color: #439DD5;
-  font-size: 14px;
+  color: $bluefont;
+  font-size: $fontsmall;
 }
 .pop-delete {
   margin-left: 10px;
-  color: #464646;
-  font-size: 14px;
+  color: $darkgreyfont;
+  font-size: $fontsmall;
 }
 .pop-el {
   padding: 6px;
@@ -98,7 +88,13 @@
   justify-content: center;
   align-items: center;
 }
-@media only screen and (max-width: 320px){
+.arrow {
+  left: 105px!important;
+}
+ngb-popover-window {
+  left: -40px!important;
+}
+@media only screen and (max-width: 576px){
   .container1 {
     display: grid;
     grid-template-rows: auto auto;
@@ -110,12 +106,25 @@
   }
   .content-box {
     grid-template-columns: 70px auto 51px;
+    grid-template-rows: auto auto 30px auto;
   }
-  .header-box {
-    grid-template-columns: 70px auto;
+  .icon-container {
+    grid-area: 1/1/3/2
+  }
+  .content-name {
+    grid-area: 1/2/2/3;
+  }
+  .progress-amount {
+    grid-area: 2/2/3/3;
   }
   .progress {
     grid-area: 3/2/4/4;
+  }
+  .stopped {
+    grid-area: 4/2/5/4;
+  }
+  .header-box {
+    grid-template-columns: 70px auto;
   }
   .options {
     grid-area: 1/3/3/4;

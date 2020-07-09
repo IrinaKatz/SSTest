@@ -1,27 +1,27 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Order} from '../../models/order';
-import {Validator} from '../../models/validator';
-import {SocialMedia} from '../../models/socialMedia';
-import {OrderService} from '../../services/order.service';
+import {Validator} from '../../shared/validator';
+import {SocialMediaEnum} from '../../shared/socialMedia.enum';
+import {OrderService} from '../../shared/order.service';
+import {OrderModel} from '../../shared/order.model';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  selector: 'app-new-order',
+  templateUrl: './new-order.component.html',
+  styleUrls: ['./new-order.component.scss']
 })
-export class PostComponent implements OnInit {
+export class NewOrderComponent implements OnInit {
 
-  order: Order;
+  order: OrderModel;
   urlForm: FormGroup;
   show = false;
   iconPath = '';
   errorMessage = '';
   priceList;
 
-  constructor(private router: Router,
-              private service: OrderService) {
+  constructor(private service: OrderService,
+              public activeModal: NgbActiveModal) {
   }
 
   ngOnInit() {
@@ -32,10 +32,6 @@ export class PostComponent implements OnInit {
       ]),
     });
     this.priceList = this.service.getPriceList();
-  }
-
-  onClose() {
-    this.router.navigateByUrl('');
   }
 
   onUrlEnter() {
@@ -61,10 +57,10 @@ export class PostComponent implements OnInit {
   private socialMediaCheck(url, media) {
     this.cleanOrder();
     if (url.includes(media + '.com')) {
-      this.order.socialMedia = (SocialMedia[media.toUpperCase()]);
+      this.order.socialMedia = (SocialMediaEnum[media.toUpperCase()]);
       this.iconPath = '../../../assets/icons/' + media + '.png';
 
-      // setOption method checks if the url is appropriate and returns either order or false
+      // setOption method checks if the url is appropriate and returns either order-item or false
       if (!this.service.setOption(url, media, this.order)) {
         this.show = false;
         this.setErrorMessage();
@@ -79,7 +75,7 @@ export class PostComponent implements OnInit {
 
   onNewOrder() {
     this.service.addOrder(this.order);
-    this.router.navigateByUrl('');
+    this.activeModal.close('Close click');
   }
 
   toAccelerate() {

@@ -1,19 +1,18 @@
-<div class="container1">
-  <div class="order-box">
+  <div class="order-box p-3">
 
-    <div class="header-box">
-      <div class="close" (click)="onClose()">
+    <div class="header-box d-flex flex-column pb-3">
+      <div class="close pr-3 row justify-content-end" (click)="activeModal.dismiss('Cross click')">
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9706 0.656854C12.2109 0.897178 12.2109 1.28682 11.9706 1.52714L7.18401 6.31371L11.9706 11.1003C12.2109 11.3406 12.2109 11.7302 11.9706 11.9706C11.7303 12.2109 11.3406 12.2109 11.1003 11.9706L6.31372 7.18399L1.52715 11.9706C1.28683 12.2109 0.89719 12.2109 0.656867 11.9706C0.416544 11.7302 0.416545 11.3406 0.656867 11.1003L5.44344 6.31371L0.656866 1.52714C0.416544 1.28682 0.416544 0.897177 0.656867 0.656854C0.897189 0.416531 1.28683 0.416532 1.52715 0.656854L6.31372 5.44342L11.1003 0.656855C11.3406 0.416532 11.7303 0.416532 11.9706 0.656854Z" fill="#D8D8D8"/>
         </svg>
       </div>
-      <div class="header">Оформление заказа</div>
+      <div class="header text-center">Оформление заказа</div>
     </div>
 
     <div class="order-content">
       <div class="form-group input-box" [formGroup]="urlForm" [ngClass]="show ? 'border-add' : ''">
         <div class="input-header">Укажите ссылку на то, что хотите раскрутить</div>
-        <div class="input-field" [ngClass]="errorMessage ? 'red' : ''">
+        <div class="input-field px-3 mt-3 border rounded col-12" [ngClass]="errorMessage ? 'red' : ''">
           <img [src]=iconPath>
           <input type="form-control text" [formControlName]="'urlControl'" (keyup.enter)="onUrlEnter()" (change)="onUrlEnter()" placeholder="Введите ссылку">
         </div>
@@ -22,21 +21,21 @@
 
       <div class="details-container">
 
-        <div class="promo-element" *ngFor="let option of order.options">
-          <div class="promo-leftpart">
+        <div class="promo-element d-flex flex-row flex-wrap p-4 m-0 justify-content-between" *ngFor="let option of order.options">
+          <div class="promo-leftpart d-flex flex-row flex-nowrap justify-content-start my-2">
             <div class="icon">
               <img [src]="'../../../assets/icons/'+ option.option +'.png'">
             </div>
-            <div class="promo-type">{{option.option}}</div>
+            <div class="promo-type p-2 pl-3">{{option.option}}</div>
           </div>
 
-          <div class="promo-sum">
+          <div class="promo-sum d-flex flex-row justify-content-between w-100">
             <input [(ngModel)]="option.totalAmount" (input)="toEditSum()">
-            <span class="display-sum">
-               <span class="sum">
+            <span class="display-sum d-flex flex-row justify-content-end flex-nowrap">
+               <span class="sum align-self-center">
                   {{option.totalAmount*priceList[order.socialMedia][option.option] | myDecimal }}
                 </span>
-                <i class="fas fa-ruble-sign" style="color:#999999; font-size: 14px"></i>
+                <i class="fas fa-ruble-sign align-self-center" style="color:#999999; font-size: 14px"></i>
             </span>
           </div>
         </div>
@@ -68,9 +67,10 @@
       <span class="total">Итого: </span>
       <span class="total-sum">{{order.sum | myDecimal}} руб.</span>
     </div>
-    <div class="button-container">
-      <button class="grey-button" (click)="onClose()">ЗАКРЫТЬ</button>
-      <button (click)="onNewOrder()" [disabled]="!order.sum" [ngClass]="order.sum ? 'red-button' : 'pink-button'">ДОБАВИТЬ</button>
+    <div class="d-flex flex-row flex-nowrap justify-content-between mb-4">
+      <button class="grey-button mr-2" (click)="activeModal.close('Close click')">ЗАКРЫТЬ</button>
+      <button [disabled]="!order.sum" [ngClass]="order.sum ? 'red-button' : 'pink-button'" (click)="onNewOrder()">ДОБАВИТЬ</button>
     </div>
   </div>
-</div>
+
+
