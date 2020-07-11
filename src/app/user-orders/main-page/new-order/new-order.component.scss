@@ -18,7 +18,6 @@ $red: #FF6A6A;
   font-size: 30px;
   font-weight: bold;
   color: $darkgreyfont;
-  line-height: 90px;
 }
 .close {
   cursor: pointer;
@@ -35,7 +34,9 @@ $red: #FF6A6A;
   width: 100%;
   padding: 20px;
   font-size: 16px;
-
+}
+.input-header {
+  color: $darkgreyfont;
 }
 .border-add {
   border-bottom: 0.1px solid #DCDCDC;
@@ -48,11 +49,15 @@ $red: #FF6A6A;
   border: 1px solid $red!important;
 }
 .input-field>input {
+  font-size: 14px;
   padding-left: 15px;
   height: 46px;
-  max-width: 500px;
+  width: 80%;
   border: none;
   color: $darkgreyfont;
+}
+::placeholder {
+  color: $lightgreyfont;
 }
 .error-message {
   margin-top: 10px;
@@ -63,11 +68,10 @@ $red: #FF6A6A;
 }
 .promo-element {
   border-bottom: 0.1px solid #DCDCDC;
+  padding: 30px 20px;
 }
-
 .promo-type {
   line-height: 30px;
-  width: 130px;
 }
 .acceleration {
   border-bottom: 0.1px solid #DCDCDC;
@@ -78,14 +82,14 @@ $red: #FF6A6A;
   grid-template-columns: 60px auto 80px 30px;
 }
 .promo-sum {
-  max-width: 100%;
+  width: 390px;
   height: 50px;
   border-radius: 5px;
   border: 1px solid #DCDCDC;
   padding: 10px;
 }
 .promo-sum>input {
-  width: 290px;
+  width: 390px;
   border: none;
   line-height: 28px;
   color: $darkgreyfont;
@@ -135,6 +139,8 @@ button {
   height: 40px;
   border-radius: 30px;
   border: transparent;
+  font-size: $fontsmall;
+  font-weight: bold;
 }
 .pink-button {
   background-color: rgba(255, 108, 108, 0.26);
@@ -145,14 +151,22 @@ button {
 }
 
 @media only screen and (max-width: 576px){
+  .order-box {
+    padding: 0!important;
+  }
+  .header-box {
+    padding: 10px!important;
+  }
   .header {
-    padding: 30px 0;
+    padding: 10px 0!important;
     position: relative;
     top: -10px;
     font-size: 22px;
-    line-height: 32px;
   }
 
+  .input-box {
+    padding: 20px 10px;
+  }
   .input-field>img {
     height: 30px;
   }
@@ -163,7 +177,7 @@ button {
   }
   .promo-element {
     border-bottom: 0.1px solid #DCDCDC;
-    padding: 30px 10px 30px 20px;
+    padding: 20px 10px!important;
     display: grid;
     grid-template-rows: auto auto;
     flex-wrap: nowrap;
@@ -179,6 +193,9 @@ button {
   .promo-sum>input {
     width: 200px;
   }
+  .sum-container {
+    font-size: 18px;
+  }
   .sum {
     margin: 5px;
   }
@@ -186,13 +203,17 @@ button {
     line-height: 28px;
   }
   .acceleration {
-    padding: 30px;
-    grid-template-columns: 60px auto 30px;
-    grid-gap: 5px;
+    padding: 20px 10px;
+    grid-template-columns: 60px auto 40px;
+    grid-gap: 0;
     grid-template-rows: auto 22px;
   }
-  .acceleration.icon {
+  .acceleration>.icon {
     grid-area: 1/1/3/2;
+  }
+  .check {
+    height: 40px;
+    margin-left:10px;
   }
   .fast-header {
     text-align: right;
@@ -215,5 +236,13 @@ button {
   }
   button {
     margin: 0 5px;
+    font-size: 12px;
   }
+  .grey-button{
+    margin-left: 10px;
+  }
+  .red-button, .pink-button {
+    margin-right: 10px;
+  }
+
 }

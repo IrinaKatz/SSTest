@@ -1,5 +1,6 @@
 $boxwidth: 700px;
 $bggrey: #F2F2F2;
+$fontsmall: 14px;
 
 .container-fluid {
   background-color: $bggrey;
@@ -21,6 +22,8 @@ $bggrey: #F2F2F2;
 .modal-content {
   border-radius: 12px!important;
   overflow: hidden;
+  width: 620px;
+  left: -60px;
 }
 @media only screen and (max-width: 576px){
   .button-container {
@@ -32,7 +35,8 @@ $bggrey: #F2F2F2;
     margin-bottom: 10px!important;
   }
   .order-button {
-    width: 100%;
+    width: 280px;
+    font-size: $fontsmall;
   }
   .order-container {
     width: 100%;
@@ -43,5 +47,11 @@ $bggrey: #F2F2F2;
   }
   .order-container {
     margin-bottom: 10px!important;
+  }
+  .modal-content {
+    border-radius: 8px!important;
+    width: 320px;
+    top: 20px;
+    left: 5%;
   }
 }

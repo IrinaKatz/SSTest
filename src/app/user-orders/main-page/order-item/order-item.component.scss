@@ -47,6 +47,7 @@ $bggrey: #F2F2F2;
 }
 .progress-amount {
   grid-area: 2/2/3/3;
+  color: $darkgreyfont;
 }
 .stopped {
   grid-area: 2/3/3/4;
@@ -113,15 +114,18 @@ ngb-popover-window {
   }
   .content-name {
     grid-area: 1/2/2/3;
+    font-size: $fontsmall;
   }
   .progress-amount {
     grid-area: 2/2/3/3;
+    font-size: $fontsmall;
   }
   .progress {
     grid-area: 3/2/4/4;
   }
   .stopped {
     grid-area: 4/2/5/4;
+    font-size: $fontsmall;
   }
   .header-box {
     grid-template-columns: 70px auto;
@@ -132,5 +136,8 @@ ngb-popover-window {
   }
   .hide {
     display: none;
+  }
+  .name {
+    font-size: 18px;
   }
 }
